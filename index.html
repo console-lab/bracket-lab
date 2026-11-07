@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Bracket Lab · Nova / Stone + Green</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>try{if(localStorage.getItem('bracket-lab-theme-bJMV1TuK')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+  <style>
+/* shadcn/ui preset bJMV1TuK
+   Nova · Stone base · Green theme · Stone charts · DM Sans · Lucide · default radius
+   Standalone adaptation of the preset's visual tokens. */
+:root {
+  color-scheme: light;
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(.147 .004 49.25);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(.147 .004 49.25);
+  --popover: oklch(1 0 0);
+  --primary: oklch(.527 .154 150.069);
+  --primary-hover: oklch(.448 .119 151.328);
+  --primary-foreground: oklch(.985 .001 106.423);
+  --secondary: oklch(.97 .001 106.424);
+  --secondary-foreground: oklch(.216 .006 56.043);
+  --muted: oklch(.97 .001 106.424);
+  --muted-foreground: oklch(.553 .013 58.071);
+  --accent: oklch(.97 .001 106.424);
+  --accent-foreground: oklch(.216 .006 56.043);
+  --border: oklch(.923 .003 48.717);
+  --input: oklch(.923 .003 48.717);
+  --ring: oklch(.527 .154 150.069);
+  --destructive: oklch(.577 .245 27.325);
+  --chart-1: oklch(.869 .005 56.366);
+  --chart-2: oklch(.709 .01 56.259);
+  --chart-3: oklch(.553 .013 58.071);
+  --chart-4: oklch(.374 .01 67.558);
+  --chart-5: oklch(.216 .006 56.043);
+  --surface: oklch(.985 .001 106.423);
+  --surface-2: oklch(.97 .001 106.424);
+  --soft-green: oklch(.965 .035 151);
+  --soft-green-border: oklch(.845 .087 151);
+  --connector-idle: oklch(.815 .013 58.071);
+  --strong-border: oklch(.869 .005 56.366);
+  --on-selected: #ffffff;
+  --shadow: 0 1px 2px rgba(28,25,23,.035), 0 6px 20px rgba(28,25,23,.035);
+  --shadow-lg: 0 28px 80px rgba(28,25,23,.18);
+  --bg:var(--background); --panel:var(--card); --panel2:var(--secondary);
+  --text:var(--foreground); --muted-text:var(--muted-foreground);
+  --gold:var(--primary); --line:var(--connector-idle); --round-gap:190px; --card-width:164px;
+}
+:root.dark {
+  color-scheme: dark;
+  --background: oklch(.147 .004 49.25);
+  --foreground: oklch(.985 .001 106.423);
+  --card: oklch(.216 .006 56.043);
+  --card-foreground: oklch(.985 .001 106.423);
+  --popover: oklch(.216 .006 56.043);
+  --primary: oklch(.723 .219 149.579);
+  --primary-hover: oklch(.792 .209 151);
+  --primary-foreground: oklch(.216 .006 56.043);
+  --secondary: oklch(.268 .007 34.298);
+  --secondary-foreground: oklch(.985 .001 106.423);
+  --muted: oklch(.268 .007 34.298);
+  --muted-foreground: oklch(.709 .01 56.259);
+  --accent: oklch(.268 .007 34.298);
+  --accent-foreground: oklch(.985 .001 106.423);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(.723 .219 149.579);
+  --destructive: oklch(.704 .191 22.216);
+  --surface: oklch(.179 .005 53);
+  --surface-2: oklch(.268 .007 34.298);
+  --soft-green: oklch(.27 .06 151);
+  --soft-green-border: oklch(.43 .103 151);
+  --connector-idle: oklch(.39 .01 67.558);
+  --strong-border: oklch(.374 .01 67.558);
+  --on-selected: oklch(.145 .004 49.25);
+  --shadow: 0 1px 2px rgba(0,0,0,.15), 0 8px 25px rgba(0,0,0,.16);
+  --shadow-lg: 0 28px 90px rgba(0,0,0,.5);
+}
+* { box-sizing:border-box; }
+html { font-family:'DM Sans',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+body { margin:0; min-height:100vh; color:var(--foreground); background:var(--background); font:14px/1.5 'DM Sans',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; transition:background .2s,color .2s; }
+button,input,textarea {font:inherit;}
+button {cursor:pointer;}
+button:focus-visible,input:focus-visible,textarea:focus-visible {outline:2px solid var(--ring);outline-offset:3px;}
+button:disabled {cursor:not-allowed;}
+::selection {background:var(--primary);color:var(--primary-foreground);}
+.app {max-width:100%; min-height:100vh;}
+.topline {display:flex;align-items:center;justify-content:space-between;gap:18px; min-height:74px;padding:15px clamp(18px,4vw,64px); border-bottom:1px solid var(--border);background:var(--card);}
+.brand {display:flex;gap:11px;align-items:center; font-weight:800;letter-spacing:-.8px;font-size:18px;line-height:1;white-space:nowrap;}
+.brand-name {display:inline-flex;gap:0;align-items:baseline;}
+.brand-name em {font-style:normal;color:var(--primary);}
+.brand-logo {display:grid;place-items:center;width:35px;height:35px;border-radius:calc(var(--radius) - 2px);color:var(--primary-foreground);background:var(--primary); flex:none;}
+.brand-logo svg {width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.micro {font-size:10px;line-height:1.3;font-weight:700;letter-spacing:1.35px;text-transform:uppercase;color:var(--muted-foreground);}
+.nav-end {display:flex;align-items:center;gap:12px;}
+.preset-chip {display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--muted-foreground);font-size:11px;font-weight:650;white-space:nowrap;}
+.preset-chip .swatch {width:8px;height:8px;background:var(--primary);border-radius:999px;}
+.theme-toggle {display:flex;align-items:center;justify-content:center;gap:7px; min-width:38px;height:36px;padding:0 10px;border:1px solid var(--border);background:var(--card);color:var(--foreground);border-radius:calc(var(--radius) - 1px);transition:background .15s,border-color .15s;}
+.theme-toggle:hover {background:var(--accent);border-color:var(--strong-border);}
+.theme-toggle svg {width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round;}
+#themeText {font-size:12px;font-weight:650;}
+.live-dot {width:7px;height:7px;border-radius:100%;background:var(--primary);display:inline-block;margin-right:6px;}
+.hero {display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:22px;padding:48px clamp(18px,4vw,64px) 38px;}
+.eyebrow {display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--primary);font-weight:750;letter-spacing:1.1px;text-transform:uppercase;}
+.eyebrow .pip {width:7px;height:7px;background:var(--primary);border-radius:999px;}
+h1 {font-size:clamp(33px,4.4vw,56px);letter-spacing:-2.6px;line-height:1.08;margin:14px 0 14px;font-weight:800;max-width:750px;}
+.hero-copy {color:var(--muted-foreground);max-width:530px;font-size:14px;line-height:1.65;margin:0;}
+.actions {display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.btn {display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:38px;border:1px solid var(--input);border-radius:calc(var(--radius) - 1px);padding:9px 13px;color:var(--foreground);background:var(--card);font-weight:650;font-size:12px;white-space:nowrap;box-shadow:0 1px 2px rgba(0,0,0,.035);transition:background .14s,border-color .14s,transform .14s;}
+.btn svg {width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none;}
+.btn:hover {background:var(--accent);border-color:var(--strong-border);}
+.btn:active {transform:translateY(1px);}
+.btn.primary {color:var(--primary-foreground);background:var(--primary);border-color:var(--primary);box-shadow:0 1px 2px rgba(0,0,0,.07);}
+.btn.primary:hover {background:var(--primary-hover);border-color:var(--primary-hover);}
+.btn.ghost {background:transparent;border-color:transparent;box-shadow:none;color:var(--muted-foreground);}
+.btn.ghost:hover {background:var(--accent);color:var(--foreground);}
+.btn:disabled {opacity:.42;cursor:not-allowed;transform:none;}
+.toolbar {display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px clamp(18px,4vw,64px);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);}
+.toolbar-left {display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.stat {display:flex;align-items:baseline;gap:6px;color:var(--muted-foreground);font-size:12px;font-weight:550;}
+.stat strong {font-size:14px;font-weight:800;color:var(--foreground);font-variant-numeric:tabular-nums;}
+.dot {width:3px;height:3px;background:var(--strong-border);border-radius:50%;}
+#stageStatus {font-size:12px;color:var(--muted-foreground);font-weight:600;}
+.board-controls {display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted-foreground);white-space:nowrap;}
+.mini {padding:3px;border:0;background:none;color:var(--foreground);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:4px;cursor:pointer;font-size:12px;font-weight:600;}
+.mini:hover {color:var(--primary);}
+.viewport {width:100%;min-height:380px;overflow:auto;scrollbar-color:var(--strong-border) var(--surface);scrollbar-width:thin;background:radial-gradient(ellipse at 50% 40%,var(--soft-green) 0%,transparent 55%),var(--background);}
+.board {position:relative;margin:0 auto;overflow:hidden;}
+.column-title {position:absolute;top:25px;text-align:center;width:var(--card-width);font-size:10px;font-weight:750;letter-spacing:1.1px;color:var(--muted-foreground);white-space:nowrap;}
+.column-title.finale {color:var(--primary);}
+#connectors {position:absolute;top:0;left:0;pointer-events:none;overflow:visible;}
+.match {position:absolute;z-index:1;width:var(--card-width);height:74px;padding:4px;background:var(--card);border:1px solid var(--border);border-radius:calc(var(--radius) + 1px);box-shadow:var(--shadow);}
+.match::before {content:'';position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:17px;height:2px;background:var(--border);border-radius:2px;}
+.match.is-final {width:206px;height:104px;padding:7px;background:var(--card);border:1.5px solid var(--primary);box-shadow:0 0 0 4px color-mix(in oklch,var(--primary) 9%,transparent),var(--shadow);border-radius:calc(var(--radius) + 3px);}
+.match.is-final::before {display:none;}
+.contender {display:flex;align-items:center;justify-content:space-between;width:100%;height:31px;gap:7px;padding:0 8px;background:transparent;border:1px solid transparent;border-radius:calc(var(--radius) - 4px);color:var(--foreground);font-weight:650;font-size:11px;white-space:nowrap;text-align:left;transition:background .12s,color .12s;}
+.contender + .contender {margin-top:1px;}
+.contender .name {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.contender .check {color:var(--muted-foreground);flex:none;font-size:12px;}
+.contender.selectable:hover {background:var(--soft-green);color:var(--primary);}
+.contender.selected {background:var(--primary);border-color:var(--primary);color:var(--primary-foreground);font-weight:800;}
+.contender.selected .check {color:var(--primary-foreground);}
+.contender.eliminated {color:var(--muted-foreground);}
+.contender.waiting,.contender.bye {color:var(--muted-foreground);font-style:italic;font-weight:450;}
+.contender:disabled {cursor:default;}
+.is-final .contender {height:41px;font-size:12px;}
+.connector {fill:none;stroke:var(--connector-idle);stroke-width:1.65;stroke-linejoin:round;stroke-linecap:round;opacity:1;}
+.champion {position:absolute;width:276px;transform:translateX(-50%);text-align:center;z-index:2;}
+.champion-trophy {display:grid;place-items:center;margin:0 auto 10px;width:43px;height:43px;border:1px solid var(--soft-green-border);border-radius:50%;font-size:22px;background:var(--soft-green);color:var(--primary);}
+.champion-label {font-size:10px;font-weight:800;letter-spacing:1.65px;color:var(--primary);}
+.champion-name {display:block;font-size:18px;font-weight:800;letter-spacing:-.55px;margin-top:7px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.champion.pending .champion-name {color:var(--muted-foreground);font-weight:500;font-size:13px;}
+.footer {padding:24px 22px 35px;text-align:center;color:var(--muted-foreground);font-size:12px;border-top:1px solid var(--border);background:var(--surface);}
+.toast {position:fixed;bottom:24px;left:50%;transform:translate(-50%,12px);padding:11px 16px;background:var(--foreground);color:var(--background);border-radius:var(--radius);box-shadow:var(--shadow-lg);font-size:12px;font-weight:700;z-index:10;opacity:0;transition:.18s;pointer-events:none;}
+.toast.show {opacity:1;transform:translate(-50%,0);}
+dialog {color:var(--foreground);background:var(--popover);border:1px solid var(--border);border-radius:calc(var(--radius) + 6px);box-shadow:var(--shadow-lg);width:min(94vw,640px);padding:0;max-height:90dvh;overflow:auto;}
+dialog::backdrop {background:rgba(0,0,0,.5);backdrop-filter:blur(3px);}
+.modal-head {display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:25px 25px 15px;}
+.modal-head h2 {font-size:25px;letter-spacing:-.8px;margin:7px 0 0;font-weight:750;}
+.close {display:grid;place-items:center;background:transparent;border:1px solid transparent;color:var(--muted-foreground);border-radius:var(--radius);width:32px;height:32px;font-size:25px;line-height:1;padding:0;}
+.close:hover {background:var(--accent);color:var(--foreground);}
+.modal-body {padding:0 25px 25px;}
+.field-label {display:block;color:var(--foreground);font-size:12px;font-weight:650;margin:18px 0 7px;}
+input[type='text'],textarea {width:100%;border:1px solid var(--input);color:var(--foreground);background:var(--background);border-radius:calc(var(--radius) - 1px);padding:11px 12px;outline:none;}
+input::placeholder,textarea::placeholder {color:var(--muted-foreground);opacity:.8;}
+input:focus,textarea:focus {border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in oklch,var(--primary) 17%,transparent);}
+textarea {resize:vertical;min-height:225px;line-height:1.65;font:12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;}
+.hint {color:var(--muted-foreground);font-size:12px;line-height:1.6;margin:10px 0 0;}
+.hint code {color:var(--primary);font-size:11px;background:var(--soft-green);padding:3px 5px;border-radius:4px;}
+.modal-actions {display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px;}
+.error {color:var(--destructive);min-height:20px;font-size:12px;margin-top:7px;}
+@media(max-width:800px) {.preset-chip {display:none;}.hero {padding-top:35px;}.board-controls {display:none;}}
+@media(max-width:680px) {.topline{padding:15px 18px;min-height:65px;}.micro.on-top{display:none;}.hero{padding:32px 18px 28px;}.hero h1{letter-spacing:-1.6px;}.actions{width:100%;}.actions .btn{flex:1;}.toolbar{padding:14px 18px;align-items:flex-start;}.modal-head{padding:20px 18px 10px;}.modal-body{padding:0 18px 20px;}.dot{display:none;}#themeText{display:none;}.theme-toggle{padding:0;width:37px;min-width:37px;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important;}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topline">
+    <div class="brand"><span class="brand-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4v6a3 3 0 0 0 3 3h8M5 20v-3a4 4 0 0 1 4-4h7"/><path d="m13 9 4 4-4 4"/><circle cx="5" cy="3.5" r="1.5"/><circle cx="5" cy="20.5" r="1.5"/></svg></span><span class="brand-name">Bracket<em>Lab</em></span></div>
+    <div class="nav-end"><div class="preset-chip"><span class="swatch"></span> Nova <span aria-hidden="true">·</span> Stone / Green <span aria-hidden="true">·</span> <span title="Official shadcn/ui preset code">bJMV1TuK</span></div><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch color mode" aria-pressed="false"><svg id="themeIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><span id="themeText">Light</span></button></div>
+  </header>
+  <section class="hero">
+    <div><div class="eyebrow"><span class="pip"></span> Your personal knockout board</div><h1 id="titleLabel">Every matchup. <span style="color:var(--gold)">One winner.</span></h1><p class="hero-copy">Bring the matchups. Pick the winners. Watch the bracket take shape — with every decision saved right on this device.</p></div>
+    <div class="actions"><button class="btn primary" id="importBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Import pairings</button><button class="btn" id="exportBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg> Export backup</button><button class="btn ghost" id="undoBtn" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7v6h6M5 13a7 7 0 1 1 2.1 5"/></svg> Undo</button></div>
+  </section>
+  <section class="toolbar" aria-label="Tournament status"><div class="toolbar-left"><div class="stat"><strong id="playerCount">0</strong> contenders</div><span class="dot"></span><div class="stat"><strong id="progress">0 / 0</strong> decisions made</div><span class="dot"></span><div class="stat" id="stageStatus">Ready to play</div></div><div class="board-controls">← Scroll to explore → <button class="mini" id="resetBtn">Clear picks</button></div></section>
+  <main class="viewport" id="viewport"><div class="board" id="board" role="region" aria-label="Interactive knockout tournament bracket"><svg id="connectors" aria-hidden="true"></svg><div id="matches"></div><div id="titles"></div><div id="champion"></div></div></main>
+  <footer class="footer">Click a contender to advance them · Autosaved in this browser · No account or setup required</footer>
+</div>
+<dialog id="importDialog" aria-labelledby="modalTitle"><div class="modal-head"><div><span class="micro">SET UP YOUR TOURNAMENT</span><h2 id="modalTitle">Bring the matchups.</h2></div><button id="closeModal" class="close" aria-label="Close">×</button></div><div class="modal-body"><label class="field-label" for="inputTitle">Tournament name</label><input id="inputTitle" type="text" maxlength="80" placeholder="Best Marvel Character"/><label class="field-label" for="pairingInput">Pairings — one per line</label><textarea id="pairingInput" spellcheck="false" placeholder="Iron Man vs Captain America&#10;Thor vs Loki&#10;Wanda vs Vision&#10;Spider-Man vs Doctor Strange"></textarea><p class="hint">Use <code>A vs B</code>, <code>A, B</code>, or one name per line (paired in order). To include a winner you already know: <code>Thor vs Loki =&gt; Thor</code>. Import a previous backup by pasting its JSON here. Supports 2–64 contenders; other sizes receive byes.</p><div class="error" id="importError" role="alert"></div><div class="modal-actions"><button class="btn ghost" id="exampleBtn">Try the Marvel example</button><button class="btn primary" id="createBtn">Create bracket <span aria-hidden="true">→</span></button></div></div></dialog>
+<div class="toast" role="status" id="toast"></div>
+<script>
+(() => {
+  'use strict';
+  const THEME_KEY = 'bracket-lab-theme-bJMV1TuK';
+  const toggle = document.getElementById('themeToggle');
+  function applyMode(mode) {
+    const isDark = mode === 'dark';
+    document.documentElement.classList.toggle('dark', isDark);
+    toggle.setAttribute('aria-pressed', String(isDark));
+    toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    document.getElementById('themeText').textContent = isDark ? 'Dark' : 'Light';
+    document.getElementById('themeIcon').innerHTML = isDark
+      ? '<path d="M20.985 12.486A9 9 0 0 1 11.514 3.015a9 9 0 1 0 9.47 9.47Z"/>'
+      : '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+    try { localStorage.setItem(THEME_KEY, mode); } catch (_) {}
+  }
+  applyMode(document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  toggle.addEventListener('click', () => applyMode(document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
+  const STORAGE_KEY = 'bracket-lab-v1';
+  const DEMO = `Peter Parker #1 vs Vulture => Peter Parker #1\nNed vs MJ => Ned\nPeter Quill vs Drax => Peter Quill\nGamora vs Nebula => Gamora\nMoon Knight vs Shang-Chi => Moon Knight\nDaredevil vs Punisher => Daredevil\nWolverine vs Jean Grey => Wolverine\nHuman Torch vs Deadpool => Deadpool\nTony Stark vs Shuri => Tony Stark\nVision vs Ultron => Vision\nWanda vs Agatha => Wanda\nHeimdall vs Ancient One => Heimdall\nEgo vs Dormammu => Ego\nDoctor Strange vs Agent Carter => Doctor Strange\nScott Lang vs Wong => Scott Lang\nHank Pym vs Clint Barton => Clint Barton`;
+  const $ = s => document.querySelector(s);
+  const safe = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fieldSize = n => Math.max(4,2 ** Math.ceil(Math.log2(Math.max(2,n))));
+  const VALID_KEYS = /^(L|R):\d+:\d+$|^F:0:0$/;
+  const STORE_EMPTY = () => ({version:1,title:'The Best Marvel Character',players:[],picks:{}});
+  let state = STORE_EMPTY();
+  let undoStack = [];
+  let toastTimeout = null;
+  function notify(msg) { const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('show'),2300); }
+  function save() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); } catch(_) { notify('Storage unavailable — export a backup to save your progress.'); } }
+  function validateBackup(raw) {
+    if (!raw || typeof raw!=='object' || !Array.isArray(raw.players) || !raw.picks) throw Error('Invalid backup format.');
+    const players=raw.players.map((p,i)=>({id:'p'+(i+1),name:String(p.name||'').trim().slice(0,120)}));
+    if(players.length<2 || players.length>64 || players.some(p=>!p.name)) throw Error('A bracket needs 2–64 named contenders.');
+    const oldIds=raw.players.map(p=>String(p.id));
+    if(new Set(oldIds).size!==oldIds.length) throw Error('Backup contains duplicate IDs.');
+    const map=new Map(oldIds.map((id,i)=>[id,'p'+(i+1)]));
+    const picks={};
+    for(const [key,id] of Object.entries(raw.picks)){ if(VALID_KEYS.test(key) && map.has(String(id))) picks[key]=map.get(String(id)); }
+    return {version:1,title:String(raw.title||'My Tournament').slice(0,80),players,picks};
+  }
+  function restore() {
+    try { const data=localStorage.getItem(STORAGE_KEY);if(data){state=validateBackup(JSON.parse(data));return;} }catch(err){console.warn('Ignoring invalid stored bracket:',err);}
+    state=parseInput(DEMO,'The Best Marvel Character');save();
+  }
+  function parseInput(input, title) {
+    const lines=input.split(/\r?\n/).map(s=>s.trim().replace(/^(?:[-•*]\s+|\d+[.)]\s+)/,'')).filter(Boolean);
+    if(lines.length===0) throw Error('Paste at least two contenders.');
+    const names=[], winners=[];
+    for(const line of lines) {
+      const parts=line.split(/\s*(?:=>|⇒)\s*/);
+      if(parts.length>2) throw Error('Please use at most one “=> winner” per line.');
+      const pair=parts[0].split(/\s+vs\.?\s+|\s+v\.?\s+|\s*\|\s*|\s*,\s*|\t+/i).map(s=>s.trim());
+      if(pair.length>2) throw Error('Use one pairing per line: “A vs B”.');
+      if(pair.some(s=>!s)) throw Error('A matchup has a missing name.');
+      const start=names.length;
+      names.push(...pair);
+      if(parts[1]){
+        if(pair.length!==2) throw Error('A preselected winner needs a pairing: “A vs B => A”.');
+        const found=pair.findIndex(n=>n.toLocaleLowerCase()===parts[1].trim().toLocaleLowerCase());
+        if(found<0) throw Error('Winner “'+parts[1].trim()+'” must match one of the paired names.');
+        winners.push({index:start+found,match:Math.floor(start/2)});
+      }
+    }
+    if(names.length<2 || names.length>64) throw Error('Please provide between 2 and 64 contenders.');
+    if(names.some(n=>n.length>120)) throw Error('Keep each contender name under 120 characters.');
+    const field=fieldSize(names.length);
+    const firstMatchPerSide=field/4;
+    const picks={};
+    for (const entry of winners){
+      const global=entry.match;
+      const side=global<firstMatchPerSide?'L':'R';
+      const local=global%firstMatchPerSide;
+      picks[`${side}:0:${local}`]='p'+(entry.index+1);
+    }
+    return {version:1,title:title.trim().slice(0,80)||'My Tournament',players:names.map((name,i)=>({id:'p'+(i+1),name})),picks};
+  }
+  const entry = id => id ? {kind:'entry', id} : {kind:'empty'};
+  const pending={kind:'pending'}, empty={kind:'empty'};
+  const status = (a,b,pick) => {
+    if(a.kind==='empty' && b.kind==='empty') return empty;
+    if(a.kind==='empty') return b;
+    if(b.kind==='empty') return a;
+    if(a.kind==='entry' && b.kind==='entry' && (pick===a.id||pick===b.id)) return entry(pick);
+    return pending;
+  };
+  function calculate() {
+    const total=fieldSize(state.players.length), rounds=Math.log2(total)-1, firstMatches=total/4;
+    const slots=Array.from({length:total},(_,i)=>entry(state.players[i]?.id));
+    const sides={L:[],R:[]};
+    const invalid=[];
+    for(const side of ['L','R']){
+      let previous=[];
+      for(let r=0;r<rounds;r++){
+        const num=firstMatches/(2**r), curr=[];
+        for(let i=0;i<num;i++){
+          const key=`${side}:${r}:${i}`;
+          const [a,b]=r===0
+            ? [slots[(side==='L'?0:total/2)+i*2],slots[(side==='L'?0:total/2)+i*2+1]]
+            : [previous[i*2].outcome,previous[i*2+1].outcome];
+          const pick=state.picks[key];
+          if(pick && !(a.kind==='entry' && b.kind==='entry' && [a.id,b.id].includes(pick))) invalid.push(key);
+          curr.push({key,side,round:r,index:i,a,b,pick,outcome:status(a,b,pick)});
+        }
+        sides[side].push(curr);previous=curr;
+      }
+    }
+    const a=sides.L.at(-1)[0].outcome,b=sides.R.at(-1)[0].outcome;
+    const final={key:'F:0:0',a,b,pick:state.picks['F:0:0'],outcome:status(a,b,state.picks['F:0:0'])};
+    if(final.pick && !(a.kind==='entry' && b.kind==='entry' && [a.id,b.id].includes(final.pick))) invalid.push(final.key);
+    return {total,rounds,firstMatches,sides,final,invalid};
+  }
+  function normalize() {
+    for(let iteration=0;iteration<20;iteration++){
+      const model=calculate();
+      if(!model.invalid.length)return model;
+      for(const key of model.invalid) delete state.picks[key];
+    }
+    return calculate();
+  }
+  function labelForRound(r,total){
+    const left=total/Math.pow(2,r);
+    if(left===4)return 'SEMIFINALS';
+    if(left===8)return 'QUARTERFINALS';
+    return `ROUND OF ${left}`;
+  }
+  function playerName(id){return state.players.find(p=>p.id===id)?.name||'Unknown';}
+  function optionHtml(m, slot){
+    const s=m[slot],other=m[slot==='a'?'b':'a'];
+    const selectable=s.kind==='entry' && other.kind==='entry';
+    const chosen=selectable && m.pick===s.id;
+    const elClass = ['contender',selectable?'selectable':'',chosen?'selected':'',selectable && m.pick && !chosen?'eliminated':'',s.kind==='pending'?'waiting':'',s.kind==='empty'?'bye':''].filter(Boolean).join(' ');
+    const name=s.kind==='entry'?playerName(s.id):(s.kind==='empty'?'BYE':'Awaiting winner');
+    return `<button class="${elClass}" title="${safe(name)}" ${!selectable?'disabled':''} ${selectable?`data-pick="${safe(m.key)}" data-choice="${safe(s.id)}"`:''}><span class="name">${safe(name)}</span><span class="check">${chosen?'✓':selectable?'○':''}</span></button>`;
+  }
+  const yCenter=(r,i)=> 126 + ((i+.5)*2**r-.5)*100;
+  function renderMatch(m,x,cy,final=false){return `<div class="match ${final?'is-final':''}" style="left:${x}px;top:${cy-(final?52:37)}px" role="group" aria-label="Match: ${safe(m.a.kind==='entry'?playerName(m.a.id):'TBD')} versus ${safe(m.b.kind==='entry'?playerName(m.b.id):'TBD')}">${optionHtml(m,'a')}${optionHtml(m,'b')}</div>`;}
+  function render(initial=false){
+    const m=normalize();save();
+    $('#titleLabel').innerHTML=`${safe(state.title)}<span style="color:var(--gold)">.</span>`;
+    $('#playerCount').textContent=state.players.length;
+    $('#progress').textContent=`${Object.keys(state.picks).length} / ${state.players.length-1}`;
+    $('#stageStatus').innerHTML=m.final.outcome.kind==='entry'?'<span style="color:var(--gold)">★ Champion crowned</span>':'Tournament in progress';
+    $('#undoBtn').disabled=undoStack.length===0;
+    const cardW=164,colW=190,finalW=206,margin=36,centerGap=62;
+    const finalX=margin+m.rounds*colW+centerGap;
+    const rightStart=finalX+finalW+centerGap;
+    const width=rightStart+m.rounds*colW+margin;
+    const midY=yCenter(m.rounds-1,0);
+    const height=m.firstMatches*100+275;
+    const board=$('#board');board.style.width=width+'px';board.style.height=height+'px';
+    const positions={};let matchHTML='', titleHTML='', paths='';
+    for(const side of ['L','R']) {
+      for(let r=0;r<m.rounds;r++){
+        const x=side==='L'?margin+r*colW:rightStart+(m.rounds-1-r)*colW;
+        const label=labelForRound(r,m.total);
+        titleHTML+=`<div class="column-title" style="left:${x}px">${label}</div>`;
+        for(const match of m.sides[side][r]){
+          const cy=yCenter(r,match.index);
+          positions[match.key]={x,cy};
+          matchHTML+=renderMatch(match,x,cy);
+        }
+      }
+    }
+    for(const side of ['L','R']){
+      for(let r=0;r<m.rounds-1;r++){
+        for(const match of m.sides[side][r]){
+          const from=positions[match.key],to=positions[`${side}:${r+1}:${Math.floor(match.index/2)}`];
+          if(side==='L'){
+            const x1=from.x+cardW,x2=to.x,xm=x1+(x2-x1)/2;
+            paths+=`<path class="connector" d="M ${x1} ${from.cy} H ${xm} V ${to.cy} H ${x2}"/>`;
+          }else{
+            const x1=from.x,x2=to.x+cardW,xm=x2+(x1-x2)/2;
+            paths+=`<path class="connector" d="M ${x1} ${from.cy} H ${xm} V ${to.cy} H ${x2}"/>`;
+          }
+        }
+      }
+    }
+    const left=positions[`L:${m.rounds-1}:0`],right=positions[`R:${m.rounds-1}:0`];
+    paths+=`<path class="connector" d="M ${left.x+cardW} ${left.cy} H ${finalX}"/><path class="connector" d="M ${right.x} ${right.cy} H ${finalX+finalW}"/>`;
+    titleHTML+=`<div class="column-title finale" style="left:${finalX}px;width:${finalW}px">THE FINAL</div>`;
+    matchHTML+=renderMatch(m.final,finalX,midY,true);
+    const hasChampion=m.final.outcome.kind==='entry';
+    const champName=hasChampion?playerName(m.final.outcome.id):'Waiting for the final';
+    $('#champion').innerHTML=`<div class="champion ${hasChampion?'':'pending'}" style="left:${finalX+finalW/2}px;top:${midY+80}px"><span class="champion-trophy">${hasChampion?'🏆':'◇'}</span><div class="champion-label">${hasChampion?'THE CHAMPION':'THE CROWN AWAITS'}</div><span class="champion-name" title="${safe(champName)}">${safe(champName)}</span></div>`;
+    $('#matches').innerHTML=matchHTML;
+    $('#titles').innerHTML=titleHTML;
+    const svg=$('#connectors');svg.setAttribute('width',String(width));svg.setAttribute('height',String(height));svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.innerHTML=paths;
+    if(initial){ const viewport=$('#viewport'); const preferred=Math.max(0,finalX+finalW/2-viewport.clientWidth/2);viewport.scrollLeft=viewport.clientWidth>width?0:preferred; }
+  }
+  function snapshot(){undoStack.push(JSON.stringify(state.picks));if(undoStack.length>60)undoStack.shift();}
+  $('#matches').addEventListener('click',e=>{
+    const btn=e.target.closest('button[data-pick]');if(!btn)return;
+    const key=btn.dataset.pick,id=btn.dataset.choice;
+    const model=calculate();const match=key==='F:0:0'?model.final:[...model.sides.L.flat(),...model.sides.R.flat()].find(x=>x.key===key);
+    if(!match||!['a','b'].some(k=>match[k].kind==='entry'&&match[k].id===id)||!['a','b'].every(k=>match[k].kind==='entry'))return;
+    snapshot();if(state.picks[key]===id)delete state.picks[key];else state.picks[key]=id;
+    render();
+  });
+  $('#undoBtn').addEventListener('click',()=>{if(!undoStack.length)return;state.picks=JSON.parse(undoStack.pop());render();notify('Last pick undone.');});
+  $('#importBtn').addEventListener('click',()=>{ $('#inputTitle').value=state.title;$('#pairingInput').value='';$('#importError').textContent='';$('#importDialog').showModal();});
+  $('#closeModal').addEventListener('click',()=>$('#importDialog').close());
+  $('#exampleBtn').addEventListener('click',()=>{$('#inputTitle').value='The Best Marvel Character';$('#pairingInput').value=DEMO;$('#importError').textContent='';});
+  $('#createBtn').addEventListener('click',()=>{
+    try{
+      const text=$('#pairingInput').value.trim();
+      const next=text.startsWith('{')?validateBackup(JSON.parse(text)):parseInput(text,$('#inputTitle').value);
+      if(state.players.length && !confirm('Replace the current bracket? Your existing picks will be overwritten.'))return;
+      state=next;undoStack=[];$('#importDialog').close();render(true);notify('Bracket created. Pick your winners!');
+    }catch(err){ $('#importError').textContent=err instanceof SyntaxError?'Invalid JSON. Check the backup text.':String(err.message||err); }
+  });
+  $('#resetBtn').addEventListener('click',()=>{if(!confirm('Clear all winner selections? Your contenders will stay.'))return;snapshot();state.picks={};render();notify('All picks cleared.');});
+  $('#exportBtn').addEventListener('click',()=>{
+    const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download=(state.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'tournament')+'-bracket.json';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);notify('Backup exported.');
+  });
+  window.addEventListener('resize',()=>{});
+  restore();render(true);
+})();
+</script>
+</body>
+</html>
